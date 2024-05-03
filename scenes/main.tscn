@@ -1,8 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy7vt1j4n8nri"]
+[gd_scene load_steps=3 format=3 uid="uid://cy7vt1j4n8nri"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_0b5k7"]
+[ext_resource type="PackedScene" uid="uid://cpo5y3nyxbfbj" path="res://scenes/game.tscn" id="2_nawvv"]
 
-[node name="Main" type="Node2D"]
-script = ExtResource("1_0b5k7")
+[sub_resource type="GDScript" id="GDScript_ut68n"]
+script/source = "extends Node
 
-[node name="Test" type="Node2D" parent="."]
+func _ready():
+	print(\"Hello\")
+"
+
+[node name="Main" type="Node"]
+script = SubResource("GDScript_ut68n")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+size_2d_override = Vector2i(960, 540)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Game" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_nawvv")]
