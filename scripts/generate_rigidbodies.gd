@@ -2,10 +2,13 @@ extends TileMap
 
 @onready var root_node = %RB_Gen
 
+@export var rigid_body_script: Resource
+@export var rigid_body_texture: Resource
+
 func _ready():
 	var cells = get_used_cells(0)
 	
-	var template_box = create_rigidbody_box(Vector2(32, 32), false, true)
+	var template_box = create_rigidbody_box(Vector2(32, 32), true, true)
 	
 	for cell in cells:
 		var meta_data = get_cell_tile_data(0, Vector2i(cell.x, cell.y))
@@ -26,7 +29,7 @@ func create_rigidbody_box(size, pickable = false, use_icon = false, shape_transf
 	var body = create_rigidbody(shape, pickable, shape_transform)
 
 	if use_icon:
-		var texture = load("res://assets/block.png")
+		var texture = rigid_body_texture
 		var icon = Sprite2D.new()
 		icon.texture = texture
 		icon.scale = size / texture.get_size()
@@ -43,7 +46,7 @@ func create_rigidbody(shape, pickable = false, shape_transform = Transform2D.IDE
 	body.add_child(collision)
 
 	if pickable:
-		var script = load("res://scripts/rigidbody_pick.gd")
+		var script = rigid_body_script # load("res://scripts/rigidbody_pick.gd")
 		body.set_script(script)
 
 	return body

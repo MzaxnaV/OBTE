@@ -5,7 +5,7 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fqbdl"]
 texture = ExtResource("1_8rl03")
 texture_region_size = Vector2i(32, 32)
-0:0/next_alternative_id = 4
+0:0/next_alternative_id = 5
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -18,15 +18,19 @@ texture_region_size = Vector2i(32, 32)
 0:0/1/custom_data_0 = 1
 0:0/2 = 2
 0:0/2/modulate = Color(0, 0.670588, 0.776471, 1)
-0:0/2/physics_layer_0/linear_velocity = Vector2(100, -500)
+0:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/2/physics_layer_0/angular_velocity = 0.0
-0:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 0:0/2/custom_data_0 = 2
 0:0/3 = 3
 0:0/3/modulate = Color(1, 1, 0, 1)
 0:0/3/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/3/physics_layer_0/angular_velocity = 0.0
 0:0/3/custom_data_0 = 3
+0:0/4 = 4
+0:0/4/modulate = Color(0, 1, 0, 1)
+0:0/4/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/4/physics_layer_0/angular_velocity = 0.0
+0:0/4/custom_data_0 = 4
 
 [resource]
 tile_size = Vector2i(32, 32)

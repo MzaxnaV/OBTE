@@ -1,16 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy7vt1j4n8nri"]
+[gd_scene load_steps=2 format=3 uid="uid://cy7vt1j4n8nri"]
 
 [ext_resource type="PackedScene" uid="uid://cpo5y3nyxbfbj" path="res://scenes/game.tscn" id="2_nawvv"]
 
-[sub_resource type="GDScript" id="GDScript_ut68n"]
-script/source = "extends Node
-
-func _ready():
-	print(\"Hello\")
-"
-
 [node name="Main" type="Node"]
-script = SubResource("GDScript_ut68n")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 15
