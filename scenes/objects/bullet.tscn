@@ -8,6 +8,8 @@ radius = 8.0
 
 [node name="Bullet" type="RigidBody2D" node_paths=PackedStringArray("_timer")]
 texture_filter = 1
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_fh3ei")
 _timer = NodePath("Timer")
 
