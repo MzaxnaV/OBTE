@@ -11,6 +11,8 @@ extends CharacterBody2D
 
 @onready var spawn_pos: Node2D = %SpawnPos
 
+var flip_h: bool = false
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var wasInAir = false
 
@@ -21,14 +23,24 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		wasInAir = true
-
+	
+	var mouse_pos = get_global_mouse_position()
+	if (mouse_pos.x > position.x):
+		flip_h = false
+	else:
+		flip_h = true
 	
 	if Input.is_action_just_released("shoot"):
-		var launch_direction = (get_global_mouse_position() - spawn_pos.global_position).normalized()
+		var launch_direction = (mouse_pos - spawn_pos.global_position).normalized()
 		var bullet = bullet_scene.instantiate()
 		game.add_child(bullet)
-		bullet.spawn(spawn_pos.global_position, launch_direction * SHOOT_FORCE, 3)
 		
+		# TODO: Move SpawnPos relative to mouse instead.
+		var pos = spawn_pos.global_position
+		if (flip_h):
+			pos.x -= 2 * spawn_pos.position.x
+		
+		bullet.spawn(pos, launch_direction * SHOOT_FORCE, 3)
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -45,8 +57,9 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
 		var collider = c.get_collider()
-		if collider is RigidBody2D:
-			(collider as RigidBody2D).apply_central_impulse( - c.get_normal() * FORCE_PUSH)
+		if collider is PhysicsObj:
+			collider = collider as PhysicsObj
+			collider.apply_central_impulse( - c.get_normal() * FORCE_PUSH)
 
 	if wasInAir and is_on_floor():
 		wasInAir = false
