@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @export var _timer: Timer
-@export var PUSH_FORCE = 300
+@export var PUSH_FORCE_FACTOR = 1
 
 # func _ready() -> void:
 # 	setPolygon(PolygonLib.createCirclePolygon(radius, 1))
@@ -15,6 +15,7 @@ func spawn(pos: Vector2, direction: Vector2, lifetime: float) -> void:
 	apply_impulse(direction)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	print(state.get_contact_count())
 	if state.get_contact_count() > 0:
 		print("Integrate forces)")
 		var body = state.get_contact_collider_object(0)
@@ -22,8 +23,8 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 			body = body as PhysicsObj
 			# var pos : Vector2 = state.get_contact_collider_position(0)
 			# point_fracture.fractureCollision(pos, body, self)
-			body.apply_impulse(linear_velocity * PUSH_FORCE)
-			destroy()
+			#body.apply_impulse(linear_velocity * PUSH_FORCE_FACTOR)
+			self.destroy()
 
 func despawn() -> void:
 	_timer.stop()
