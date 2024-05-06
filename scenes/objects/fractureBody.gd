@@ -6,7 +6,7 @@ var _col_poly: CollisionPolygon2D
 var _poly : Polygon2D
 var _timer : Timer
 
-func init(pos:Vector2, root: Node2D):
+func init(pos:Vector2, root: Node2D) -> void:
 	_col_poly = $CollisionPolygon2D
 	_poly = $Polygon2D
 	_timer = $Timer
