@@ -1,27 +1,37 @@
 extends RigidBody2D
 
+# parts taken from https://github.com/SoloByte/godot-polygon2d-fracture
+
 class_name PhysicsObj
 
-@onready var _rng := RandomNumberGenerator.new()
 
-var id: int
+@export var fracture_body: PackedScene
+
 @export var health: int = 1
-
 @export var cuts : int = 2
 @export var min_area : int = 25
 
-func init(type: int, pos: Vector2, obj_name: String, root: Node2D) -> void:
+var _root: Node
+
+var id: int
+var _rng = Globals._rng
+
+var should_free = false
+
+func init(type: int, pos: Vector2, obj_name: String, root: Node) -> void:
 	id = type
 	name = obj_name
 	position = 32 * pos
+	_root = root
 	root.add_child(self)
 
 func _physics_process(_delta) -> void:
-	if (health < 0):
+	if (health < 0) and !should_free:
 		destroy()
 		fracture()
 
 func destroy() -> void:
+	should_free = true
 	queue_free()
 
 func fracture() -> void:
@@ -30,10 +40,8 @@ func fracture() -> void:
 	var fracture_info = fractureSimple(source.polygon, global_transform, cuts, min_area)
 
 	for entry in fracture_info:
-			var texture_info : Dictionary = {"texture" : source.texture, "rot" : source.texture_rotation, "offset" : source.texture_offset, "scale" : source.texture_scale}
-			print(texture_info)
-			# spawnFractureBody(entry, texture_info)
-	
+		var texture_info : Dictionary = {"texture" : source.texture, "rot" : source.texture_rotation, "offset" : source.texture_offset, "scale" : source.texture_scale}
+		spawnFractureBody(entry, texture_info)
 
 #all fracture functions return an array of dictionaries -> where the dictionary is 1 fracture shard (see func makeShapeInfo) -------------------------------------
 
@@ -91,21 +99,22 @@ func getCutLines(bounding_rect : Rect2, number : int) -> Array:
 	
 	return lines
 
-# func spawnFractureBody(fracture_shard : Dictionary, texture_info : Dictionary) -> void:
-# 	var instance = _pool_fracture_bodies.getInstance()
-# 	if not instance: 
-# 		return
+func spawnFractureBody(fracture_shard : Dictionary, texture_info : Dictionary) -> void:
+	var instance = fracture_body.instantiate()
+	if not instance: 
+		return
 	
-# 	instance.spawn(fracture_shard.spawn_pos)
-# 	instance.global_rotation = fracture_shard.spawn_rot
-# 	if instance.has_method("setPolygon"):
-# 		var s : Vector2 = fracture_shard.source_global_trans.get_scale()
-# 		instance.setPolygon(fracture_shard.centered_shape, s)
+	instance.init(fracture_shard.spawn_pos, _root)
+	instance.global_rotation = fracture_shard.spawn_rot
+	if instance.has_method("setPolygon"):
+		var s : Vector2 = fracture_shard.source_global_trans.get_scale()
+		instance.setPolygon(fracture_shard.centered_shape, s)
 
 
-# 	instance.setColor(Color.WHITE)
-# 	var dir : Vector2 = (fracture_shard.spawn_pos - fracture_shard.source_global_trans.get_origin()).normalized()
-# 	instance.linear_velocity = dir * _rng.randf_range(200, 400)
-# 	instance.angular_velocity = _rng.randf_range(-1, 1)
+	instance.setColor(Color.WHITE)
+	var dir : Vector2 = (fracture_shard.spawn_pos - fracture_shard.source_global_trans.get_origin()).normalized()
+	instance.linear_velocity = dir * _rng.randf_range(200, 400)
+	instance.angular_velocity = _rng.randf_range(-1, 1)
 
-# 	instance.setTexture(PolygonLib.setTextureOffset(texture_info, fracture_shard.centroid))
+	instance.setTexture(PolygonLib.setTextureOffset(texture_info, fracture_shard.centroid))
+	
