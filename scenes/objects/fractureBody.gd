@@ -12,14 +12,11 @@ func init(pos:Vector2, root: Node2D) -> void:
 	_timer = $Timer
 	global_position = pos
 	root.add_child(self)
-	#_timer.start(5.0)
 
 func setPolygon(polygon : PackedVector2Array, new_scale : Vector2) -> void:
 	_poly.set_polygon(polygon)
 	polygon.append(polygon[0])
 	if new_scale != Vector2(1.0, 1.0):
-		#physics objects (like the rigidbody2d) can not be scaled
-		#thats why the polygon2d/line2d nodes are scale seperate
 		#collision polygons can be scaled with "shape_owner_set_transform(owner_id,transform)
 		#but here I just scale the polygon for the collision polygon
 		polygon = PolygonLib.scalePolygon(polygon, new_scale)

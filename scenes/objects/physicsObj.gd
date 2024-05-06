@@ -4,7 +4,6 @@ extends RigidBody2D
 
 class_name PhysicsObj
 
-
 @export var fracture_body: PackedScene
 
 @export var health: int = 1
@@ -33,6 +32,10 @@ func _physics_process(_delta) -> void:
 func destroy() -> void:
 	should_free = true
 	queue_free()
+
+func damage(amount: int) -> void:
+	health -= amount
+	# TODO: change colour to denote damage
 
 func fracture() -> void:
 	var source = get_child(1) as Polygon2D

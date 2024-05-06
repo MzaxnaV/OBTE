@@ -20,11 +20,11 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		var body = state.get_contact_collider_object(0)
 		if body is PhysicsObj:
 			body = body as PhysicsObj
-			body.health -= dmg
+			body.damage(dmg)
 			# var pos : Vector2 = state.get_contact_collider_position(0)
 			# point_fracture.fractureCollision(pos, body, self)
 			#body.apply_impulse(linear_velocity * PUSH_FORCE_FACTOR)
-			self.destroy()
+		self.destroy()
 
 func despawn() -> void:
 	_timer.stop()
