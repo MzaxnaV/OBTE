@@ -1,14 +1,8 @@
 extends CharacterBody2D
 
-@export var SPEED = 300.0
-@export var JUMP_VELOCITY = -400.0
-@export var FORCE_PUSH = 80.0
-@export var SHOOT_FORCE = 100;
 
 @export var game: Node
-
-@export var bullet_scene: PackedScene
-
+@export var data: PlayerData
 @onready var spawn_pos: Node2D = %SpawnPos
 
 var flip_h: bool = false
@@ -32,7 +26,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_released("shoot"):
 		var launch_direction = (mouse_pos - spawn_pos.global_position).normalized()
-		var bullet = bullet_scene.instantiate()
+		var bullet = data.bullet_scene.instantiate()
 		game.add_child(bullet)
 		
 		# TODO: Move SpawnPos relative to mouse instead.
@@ -40,17 +34,18 @@ func _physics_process(delta):
 		if (flip_h):
 			pos.x -= 2 * spawn_pos.position.x
 		
-		bullet.spawn(pos, launch_direction * SHOOT_FORCE, 3)
+		bullet.spawn(pos, launch_direction * data.shoot_force, 3)
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		print(data.jump_velocity)
+		velocity.y = data.jump_velocity
 		$AnimatedSprite2D.play("jump")
 
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * data.move_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, data.move_speed)
 
 	move_and_slide()
 	
@@ -59,7 +54,7 @@ func _physics_process(delta):
 		var collider = c.get_collider()
 		if collider is PhysicsObj:
 			collider = collider as PhysicsObj
-			collider.apply_central_impulse( - c.get_normal() * FORCE_PUSH)
+			collider.apply_central_impulse( - c.get_normal() * data.force_push)
 
 	if wasInAir and is_on_floor():
 		wasInAir = false
