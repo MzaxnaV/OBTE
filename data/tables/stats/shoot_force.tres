@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Stat" load_steps=2 format=3 uid="uid://scogep4af1d3"]
+
+[ext_resource type="Script" path="res://scripts/data/stat.gd" id="1_m8hob"]
+
+[resource]
+script = ExtResource("1_m8hob")
+type = 3
+add = 0.0
+mul = 1.0

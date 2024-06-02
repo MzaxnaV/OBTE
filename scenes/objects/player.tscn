@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/objects/player.gd" id="1_6tbrm"]
 [ext_resource type="Texture2D" uid="uid://xuonn0r0itft" path="res://assets/block1.png" id="2_b0dx7"]
-[ext_resource type="Resource" uid="uid://dcek763cjlwqc" path="res://data/player_data.tres" id="2_b71oi"]
+[ext_resource type="Resource" uid="uid://dcek763cjlwqc" path="res://data/tables/player/player_data.tres" id="2_pqdml"]
 [ext_resource type="Texture2D" uid="uid://bedha44yqsdju" path="res://assets/block2.png" id="3_x1d6h"]
 [ext_resource type="Texture2D" uid="uid://n81j72vutxvi" path="res://assets/block3.png" id="4_g2uul"]
 
@@ -38,7 +38,7 @@ animations = [{
 texture_filter = 1
 collision_mask = 3
 script = ExtResource("1_6tbrm")
-data = ExtResource("2_b71oi")
+data = ExtResource("2_pqdml")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
