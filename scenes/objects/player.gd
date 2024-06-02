@@ -47,6 +47,11 @@ func _physics_process(delta):
 	else:
 		flip_h = true
 	
+	if Input.is_action_just_released("ui_card"):
+		var tree = get_tree()
+		tree.paused = true
+		(tree.root.get_child(1).get_child(1) as SelectCard).generate_cards()
+	
 	if Input.is_action_just_released("shoot"):
 		var launch_direction = (mouse_pos - spawn_pos.global_position).normalized()
 		var bullet = data.bullet_scene.instantiate()

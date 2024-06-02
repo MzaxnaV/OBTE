@@ -5,7 +5,8 @@ enum Type { MOBILITY = 0 }
 
 const StatType = OBTE_Globals.StatType
 
-@export var name: String = ""
+@export var name: String = "Name"
+@export var desc: String = "Desc"
 @export var stats: Array[Stat]
 @export var type: Type = Type.MOBILITY
 

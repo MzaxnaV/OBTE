@@ -13,7 +13,7 @@ class_name PhysicsObj
 var _root: Node
 
 var id: int
-var _rng = Globals._rng
+var _rng = Globals.rng
 
 var should_free = false
 

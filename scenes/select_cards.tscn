@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://muetavn1y2t0"]
+
+[ext_resource type="PackedScene" uid="uid://dpniaq4r0penb" path="res://scenes/card.tscn" id="1_6jgoy"]
+[ext_resource type="Script" path="res://scenes/select_cards.gd" id="1_kshr1"]
+[ext_resource type="Resource" uid="uid://b8xy20x7u15mt" path="res://data/tables/cards/Test.tres" id="3_mf5d5"]
+[ext_resource type="Resource" uid="uid://cdp5g8pxmsvip" path="res://data/tables/cards/Test1.tres" id="4_2osoi"]
+[ext_resource type="Resource" uid="uid://cpk4ymu73ps70" path="res://data/tables/cards/Test3.tres" id="5_3popp"]
+
+[node name="SelectCards" type="PanelContainer"]
+offset_right = 171.0
+offset_bottom = 35.0
+size_flags_horizontal = 4
+script = ExtResource("1_kshr1")
+card = ExtResource("1_6jgoy")
+cards = Array[Resource("res://scripts/data/card.gd")]([ExtResource("3_mf5d5"), ExtResource("4_2osoi"), ExtResource("5_3popp")])
+metadata/_edit_vertical_guides_ = [-89.0]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select Card Dialog
+"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " X "
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+columns = 3
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
