@@ -1,10 +1,10 @@
 class_name PlayerData
 extends Resource
 
-@export var move_speed: float = 300.0
-@export var jump_velocity: float = -500.0
-@export var force_push: float = 80.0
-@export var shoot_force: float = 1000.0
+# Base Stat
+const move_speed: float = 300.0
+const jump_velocity: float = -500.0
+const push_force: float = 80.0
+const shoot_force: float = 1000.0
 
 @export var bullet_scene: PackedScene
-

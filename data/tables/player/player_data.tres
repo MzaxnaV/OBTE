@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=3 format=3 uid="uid://dcek763cjlwqc"]
+
+[ext_resource type="PackedScene" uid="uid://2ukttmacsv1e" path="res://scenes/objects/bullet.tscn" id="1_ij1je"]
+[ext_resource type="Script" path="res://scripts/data/player_data.gd" id="2_rxuyx"]
+
+[resource]
+script = ExtResource("2_rxuyx")
+bullet_scene = ExtResource("1_ij1je")
