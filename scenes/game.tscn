@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d4fk4hso4l1yy" path="res://scenes/objects/physicsObj.tscn" id="4_fvq35"]
 
 [node name="Game" type="Node"]
+process_mode = 1
 
 [node name="ViewportEnd" type="Marker2D" parent="."]
 position = Vector2(960, 540)

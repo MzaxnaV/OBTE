@@ -1,17 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy7vt1j4n8nri"]
+[gd_scene load_steps=3 format=3 uid="uid://cy7vt1j4n8nri"]
 
+[ext_resource type="PackedScene" uid="uid://muetavn1y2t0" path="res://scenes/select_cards.tscn" id="2_kuwfq"]
 [ext_resource type="PackedScene" uid="uid://cpo5y3nyxbfbj" path="res://scenes/game.tscn" id="2_nawvv"]
 
 [node name="Main" type="Node"]
+process_mode = 3
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 82.0
-offset_top = 70.0
-offset_right = 82.0
-offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -19,9 +17,24 @@ size_flags_vertical = 3
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(1920, 1080)
+size = Vector2i(960, 540)
 size_2d_override = Vector2i(960, 540)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="Game" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_nawvv")]
+
+[node name="SelectCards" parent="." instance=ExtResource("2_kuwfq")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.5
+offset_top = -17.5
+offset_right = 85.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4

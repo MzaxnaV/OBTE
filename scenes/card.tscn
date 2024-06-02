@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpniaq4r0penb"]
+
+[ext_resource type="Script" path="res://scenes/card_menu_ui.gd" id="1_1me7n"]
+
+[node name="Card" type="PanelContainer"]
+script = ExtResource("1_1me7n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Type" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Text" type="Label" parent="VBoxContainer/Type"]
+layout_mode = 2
+text = "CardType : "
+
+[node name="Desc" type="Label" parent="VBoxContainer/Type"]
+layout_mode = 2
+
+[node name="Stat1" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Description" type="Label" parent="VBoxContainer/Stat1"]
+layout_mode = 2
+text = "Move Speed: "
+
+[node name="Desc" type="Label" parent="VBoxContainer/Stat1"]
+layout_mode = 2
+
+[node name="Stat2" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Description" type="Label" parent="VBoxContainer/Stat2"]
+layout_mode = 2
+text = "Jump Velocity: "
+
+[node name="Desc" type="Label" parent="VBoxContainer/Stat2"]
+layout_mode = 2
+
+[node name="Stat3" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Description" type="Label" parent="VBoxContainer/Stat3"]
+layout_mode = 2
+text = "Force Push: "
+
+[node name="Desc" type="Label" parent="VBoxContainer/Stat3"]
+layout_mode = 2
+
+[node name="Stat4" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Description" type="Label" parent="VBoxContainer/Stat4"]
+layout_mode = 2
+text = "Shoot Force: "
+
+[node name="Desc" type="Label" parent="VBoxContainer/Stat4"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Select"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

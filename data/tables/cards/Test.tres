@@ -8,6 +8,7 @@
 
 [resource]
 script = ExtResource("1_lt8jh")
-name = ""
+name = "Test"
+desc = "Description"
 stats = Array[Resource("res://scripts/data/stat.gd")]([ExtResource("2_wh0b8"), ExtResource("3_7x6xs"), ExtResource("4_2dj0u"), ExtResource("5_neg4c")])
 type = 0

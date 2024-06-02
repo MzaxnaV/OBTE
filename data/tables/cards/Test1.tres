@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://cdp5g8pxmsvip"]
+
+[ext_resource type="Script" path="res://scripts/data/card.gd" id="1_tt4q2"]
+[ext_resource type="Resource" uid="uid://bgjm1qwxypgpl" path="res://data/tables/stats/move_speed.tres" id="2_x17r3"]
+[ext_resource type="Resource" uid="uid://dsdrv7xqci0jb" path="res://data/tables/stats/jump_velocity.tres" id="3_fmm5j"]
+[ext_resource type="Resource" uid="uid://xr16kw8e800g" path="res://data/tables/stats/push_force.tres" id="4_c8s56"]
+[ext_resource type="Resource" uid="uid://scogep4af1d3" path="res://data/tables/stats/shoot_force.tres" id="5_bhcec"]
+
+[resource]
+script = ExtResource("1_tt4q2")
+name = "Test1"
+desc = "Description1"
+stats = Array[Resource("res://scripts/data/stat.gd")]([ExtResource("2_x17r3"), ExtResource("3_fmm5j"), ExtResource("4_c8s56"), ExtResource("5_bhcec")])
+type = 0
